@@ -46,10 +46,12 @@ public class MainActivity extends AppCompatActivity {
         mShoppingListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor cursor = mCursorAdapter.getCursor();
                 Intent intent = new Intent (MainActivity.this, Main2Activity.class);
 
                 cursor.moveToPosition(position);
-                intent.putExtra("id",cursor.getInt(cursor.getColumnIndex(ShoppingSQLiteOpenHelper.COL_ID)));
+                int idLocation = cursor.getInt(cursor.getColumnIndex(ShoppingSQLiteOpenHelper.COL_ID));
+                intent.putExtra("id",idLocation);
                 startActivity(intent);
 
             }
